@@ -18,7 +18,7 @@ int main(void)
 	scanf(" %s", name);
 	int len = strlen(name);
 	printf("Hello %s!\n\n\n", name);
-  printf("Hello %s!\n", name);
+        printf("Hello %s!\n", name);
 	printf("Your name is %d characters long\n", len);
 
 	// /** Exercise 3 **/
