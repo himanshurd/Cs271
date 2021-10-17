@@ -31,7 +31,7 @@ int main(int argc, const char *argv[]) {
 	while (fgets(line, sizeof(line), fin)) {
 		line_num++;
 		printf("[%04d] %s", line_num, line);
-		fprintf(fout, line);
+		fprintf(fout,"%s", line);
 	}
 
 	/** Exercise 6 **/
