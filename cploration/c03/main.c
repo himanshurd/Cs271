@@ -1,35 +1,41 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-#define MAX_LIMIT 100
-int main(void) 
-{
-	char hello[] = "Hello";
-	char name[MAX_LIMIT];
-	char welcome[MAX_LIMIT];
-	char prof[8] = {'P', 'a', 't', 'r', 'i', 'c', 'k', '\0'};
+#define MAX_LINE_LENGTH 200
 
-	/** Exercise 1 **/
-	strcpy(welcome, hello);
-	strcat(welcome, " ");
-	strcat(welcome, name);
-	printf("What is your name? ");
-
-	// /** Exercise 2 **/
-	scanf(" %s", name);
-	int len = strlen(name);
-	printf("Hello %s!\n\n\n", name);
-  printf("Hello %s!\n", name);
-	printf("Your name is %d characters long\n", len);
-
-	// /** Exercise 3 **/
-	int f;
-	f = strcmp(name, prof);
-	if (f > 0) {
-		printf("%s is before %s", name, prof);
-	} else if (f < 0) {
-		printf("%s is after %s", name, prof);
-	} else if (f == 0) {
-		printf("%s is %s", name, prof);
+/** Exercise 1 **/
+int main(int argc, const char *argv[]) {
+	/** Exersice 2 **/
+	if (argc != 2) {
+		printf("Usage: %s [filename]\n", argv[0]);
+		exit(EXIT_FAILURE);
 	}
+
+	/** Exercise 3 **/
+	FILE *fin;
+	fin = fopen(argv[1], "r");
+	if (fin == NULL) {
+		perror("Unable to open file!");
+		exit(EXIT_FAILURE);
+	}
+
+	/** Exercise 4 **/
+	char out_file[MAX_LINE_LENGTH];
+	strcpy(out_file, argv[1]);
+	strcat(out_file, ".echo");
+	FILE *fout = fopen(out_file, "w+");
+
+	/** Exercise 5 **/
+	char line[MAX_LINE_LENGTH] = {0};
+	unsigned int line_num = 0;
+	while (fgets(line, sizeof(line), fin)) {
+		line_num++;
+		printf("[%04d] %s", line_num, line);
+		fprintf(fout, line);
+	}
+
+	/** Exercise 6 **/
+	fclose(fin);
+	fclose(fout);
 	return 0;
 }
