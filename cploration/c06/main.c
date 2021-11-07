@@ -1,23 +1,22 @@
 #include "parser.h"
 #include <stdio.h>
-#include <stdlib.h> 
+#include <stdlib.h>
 
 int main(int argc, const char *argv[]) {
+	if (argc < 2) {
+		printf("Usage: %s [filename]\n", argv[0]);
+		exit(EXIT_FAILURE);
+	}
 
-  if (argc < 2) {
-      printf("Usage: %s [filename]\n", argv[0]);
-      exit(EXIT_FAILURE);
-  }
+	FILE *fin = fopen(argv[1], "r");
 
-  FILE *fin = fopen(argv[1], "r");
-   
-  if (fin == NULL) {
-      perror("Unable to open file!");
-      exit(EXIT_FAILURE);
-   }
+	if (fin == NULL) {
+		perror("Unable to open file!");
+		exit(EXIT_FAILURE);
+	}
 
-  parse(fin);
-  fclose(fin);
-  
-  return 0;
+	parse(fin);
+	fclose(fin);
+
+	return 0;
 }
