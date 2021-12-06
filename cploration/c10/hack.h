@@ -150,4 +150,36 @@ static inline jump_id str_to_jumpid(const char *s) {
     return id;                       
 }
 
+static inline dest_id str_to_dest_id(const char *s) {
+
+    dest_id id = DEST_INVALID;
+
+    if(s == NULL) {
+        id = DEST_NULL;
+    }
+    else if(strstr(s, "M") != NULL) {
+        id = DEST_M;
+    }
+    else if(strstr(s, "D") != NULL) {
+        id = DEST_D;
+    }
+    else if(strstr(s, "DM") != NULL) {
+        id = DEST_DM;
+    }
+    else if(strstr(s, "A") != NULL) {
+        id = DEST_A;
+    }
+    else if(strstr(s, "AM") != NULL) {
+        id = DEST_AM;
+    }
+    else if(strstr(s, "AD") != NULL) {
+        id = DEST_AD;
+    }
+    else if(strstr(s, "ADM") != NULL) {
+        id = DEST_ADM;
+    }
+    return id;
+}
+
+
 
