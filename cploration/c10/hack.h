@@ -43,3 +43,15 @@ typedef enum jump_id {
     JMP_JLE,
     JMP_JMP
 } jump_id;
+
+typedef enum dest_id {
+    DEST_INVALID = -1,
+    DEST_NULL,
+    DEST_M,
+    DEST_D,
+    DEST_DM,
+    DEST_A,
+    DEST_AM,
+    DEST_AD,
+    DEST_ADM
+} dest_id;
