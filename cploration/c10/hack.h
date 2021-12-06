@@ -119,3 +119,35 @@ static const predefined_symbol predefined_symbols[NUM_PREDEFINED_SYMBOLS] = {
     {{"KBD"}, SYM_KBD}
 };
 
+static inline jump_id str_to_jumpid(const char *s) {
+
+    jump_id id = JMP_INVALID;
+
+    if(s == NULL) {
+        id = JMP_NULL;
+    }
+    else if(strstr(s, "JGT") != NULL) {
+        id = JMP_JGT;
+    }
+    else if(strstr(s, "JEQ") != NULL) {
+        id = JMP_JEQ;
+    }
+    else if(strstr(s, "JGE") != NULL) {
+        id = JMP_JGE;
+    }
+    else if(strstr(s, "JLT") != NULL) {
+        id = JMP_JLT;
+    }
+    else if(strstr(s, "JNE") != NULL) {
+        id = JMP_JNE;
+    }
+    else if(strstr(s, "JLE") != NULL) {
+        id = JMP_JLE;
+    }
+    else if(strstr(s, "JMP") != NULL) {
+        id = JMP_JMP;
+    }
+    return id;                       
+}
+
+
