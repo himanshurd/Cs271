@@ -31,3 +31,15 @@ typedef enum symbol_id {
     SYM_SCREEN = 16384,
     SYM_KBD = 24576
 } symbol_id;
+
+typedef enum jump_id {
+    JMP_INVALID = -1,
+    JMP_NULL,
+    JMP_JGT,
+    JMP_JEQ,
+    JMP_JGE,
+    JMP_JLT,
+    JMP_JNE,
+    JMP_JLE,
+    JMP_JMP
+} jump_id;
