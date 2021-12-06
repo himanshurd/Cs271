@@ -181,5 +181,107 @@ static inline dest_id str_to_dest_id(const char *s) {
     return id;
 }
 
+static inline comp_id str_to_compid(const char *s, int *a) {
 
+    comp_id id = COMP_INVALID;
+    *a = 0;
+
+    if(strstr(s, "0") != NULL) {
+        id = COMP_0;
+    }
+    else if(strstr(s, "1") != NULL) {
+        id = COMP_1;
+    }
+    else if(strstr(s, "-1") != NULL) {
+        id = COMP_NEG_1;
+    }
+    else if(strstr(s, "D") != NULL) {
+        id = COMP_D;
+    }
+    else if(strstr(s, "A") != NULL) {
+        id = COMP_A;
+    }
+    else if(strstr(s, "M") != NULL) {
+        id = COMP_M;
+        *a = 1;
+    }
+    else if(strstr(s, "!D") != NULL) {
+        id = COMP_NOT_D;
+    }
+    else if(strstr(s, "!A") != NULL) {
+        id = COMP_NOT_A;
+    }
+    else if(strstr(s, "!M") != NULL) {
+        id = COMP_NOT_M;
+        *a = 1;
+    }
+    else if(strstr(s, "-D") != NULL) {
+        id = COMP_NEG_D;
+    }
+    else if(strstr(s, "-A") != NULL) {
+        id = COMP_NEG_A;
+    }
+    else if(strstr(s, "-M") != NULL) {
+        id = COMP_NEG_M;
+        *a = 1;
+    }
+    else if(strstr(s, "D+1") != NULL) {
+        id = COMP_D_PLUS_1;
+    }
+    else if(strstr(s, "A+1") != NULL) {
+        id = COMP_A_PLUS_1;
+    }
+    else if(strstr(s, "M+1") != NULL) {
+        id = COMP_M_PLUS_1;
+        *a = 1;
+    }
+    else if(strstr(s, "D-1") != NULL) {
+        id = COMP_D_MINUS_1;
+    }
+    else if(strstr(s, "A-1") != NULL) {
+        id = COMP_A_MINUS_1;
+    }
+    else if(strstr(s, "M-1") != NULL) {
+        id = COMP_M_MINUS_1;
+        *a = 1;
+    }
+    else if(strstr(s, "D+A") != NULL) {
+        id = COMP_D_PLUS_A;
+    }
+    else if(strstr(s, "D+M") != NULL) {
+        id=COMP_D_PLUS_M;
+        *a = 1;
+    }
+    else if(strstr(s, "D-A") != NULL) {
+        id = COMP_D_MINUS_A;
+    }
+    else if(strstr(s, "D-M") != NULL) {
+        id = COMP_D_MINUS_M;
+        *a = 1;
+    }
+    else if(strstr(s, "A-D") != NULL) {
+        id = COMP_A_MINUS_D;
+    }
+    else if(strstr(s, "M-D") != NULL) {
+        id = COMP_M_MINUS_D;
+        *a = 1;
+    }
+    else if(strstr(s, "D&A") != NULL) {
+        id = COMP_D_AND_A;
+    }
+    else if(strstr(s, "D&M") != NULL) {
+        id = COMP_D_AND_M;
+        *a = 1;
+    }
+    else if(strstr(s, "D|A") != NULL) {
+        id = COMP_D_BIN_OR_A;
+    }
+    else if(strstr(s, "D|M") != NULL) {
+        id = COMP_D_BIN_OR_M;
+        *a = 1;
+    }
+    return id;
+}
+
+#endif
 
