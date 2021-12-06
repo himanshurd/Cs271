@@ -16,3 +16,10 @@
 
 typedef int16_t hack_addr;
 typedef int16_t opcode;
+
+typedef struct c_instruction {
+    opcode a:1;
+    opcode comp:7;
+    opcode dest:4;
+    opcode jump:4;
+} c_instruction;
