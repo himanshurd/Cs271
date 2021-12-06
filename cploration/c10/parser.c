@@ -6,11 +6,13 @@
 #include <ctype.h>
 #include <string.h>
 
-void parse(FILE * file) {
+void parse(FILE * file, instruction * instructions) {
   char line[MAX_LINE_LENGTH] = {0};
   instruction instr; 
   unsigned int line_num = 0;
   unsigned int instr_num = 0; 
+  instruction instr;
+  
   add_predefined_symbols();
   while (fgets(line, sizeof(line), file)) {
 
@@ -128,28 +130,24 @@ void parse_C_instruction(char *line, c_instruction *instr) {
     }
 
     if(strchr(line_copy, ';') != NULL && strchr(line_copy, '=') != NULL) {
-        // printf("dest=comp;jump\n");
         instr->dest = str_to_dest_id(results[0]);
         instr->comp = str_to_compid(results[1], &a);
         instr->a = a == 1 ? instr->a & 0x1: 0;
 
     }
     else if(strchr(line_copy, ';') != NULL) {
-        // printf("comp;jump\n");
         instr->dest = 0;
         instr->comp = str_to_compid(results[0], &a);
         instr->jump = str_to_jumpid(results[1]);
         instr->a = a;
     }
     else if(strchr(line_copy, '=') != NULL) {
-        // printf("dest=comp\n");
         instr->dest = str_to_dest_id(results[0]);
         instr->comp = str_to_compid(results[1], &a);
         instr->jump = 0;
         instr->a = a;
     }
     else {
-        // printf("comp\n");
         instr->dest = 0;
         instr->comp = str_to_compid(results[0], &a);
         instr->jump = 0;
