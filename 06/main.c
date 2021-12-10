@@ -17,6 +17,9 @@ int main(int args, char *argv[]) {
 
     int num_instructions = parse(fin, instructions);
     fclose(fin);
+    
+
+    assemble(argv[1], instructions, num_instructions);
 
     printf("Number of instructions: %d\n", num_instructions);
 

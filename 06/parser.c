@@ -52,7 +52,7 @@ int parse(FILE * file, instruction * instructions) {
             instr.inst_type = c_type;
             inst_type = 'C';
         }
-        printf("%c  %s\n",inst_type, line);
+        printf("%d: %c  %s\n",line_num, inst_type, line);
         instructions[instr_num++] = instr;
     }
     return instr_num;
@@ -212,19 +212,18 @@ void assemble(const char * file_name, instruction * instructions, int num_instru
                 fprintf(fout, "%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", OPCODE_TO_BINARY(op));
             }
             else { 
-                Symbol *sym = (Symbol*) malloc(sizeof(Symbol));
-                sym = symtable_find(instr.a_inst.label);
+                Symbol * sym = symtable_find(instr.a_inst.label);
                 if(sym != NULL) { 
                     op = sym->address;
                     fprintf(fout, "%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", OPCODE_TO_BINARY(op));
-                    
                 }
                 else {
-                    symtable_insert(instr.a_inst.label, sym_location++);
-                    op = instr.a_inst.address;
-                    fprintf(fout, "%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", OPCODE_TO_BINARY(op));         
+                    symtable_insert(instr.a_inst.label, sym_location);
+                    op = sym_location;
+                    fprintf(fout, "%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", OPCODE_TO_BINARY(op));
+                    sym_location++;  
                 }
-                free(sym);
+               
             }
         }
         else if(instr.inst_type == c_type) {
