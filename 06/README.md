@@ -1,0 +1,2 @@
+# Himanshu Dhir Hack Assembler #
+Directions - This program assembles .asm files into hack binary machine code. To start, go to the  main and specify the directory to the .asm file. All of the .asm files should output filename.asm.hack 
